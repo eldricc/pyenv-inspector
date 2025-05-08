@@ -13,12 +13,6 @@ from rich.console import Console
 from rich.table import Table
 from rich.tree import Tree
 
-try:
-    from pipdeptree import get_installed_distributions, build_dist_index, construct_tree
-except ImportError:
-    print("Missing dependency: pipdeptree. Install with: pip install pipdeptree")
-    sys.exit(1)
-
 console = Console()
 
 # --------------------------
@@ -73,18 +67,40 @@ def show_package_list(json_output=False):
         console.print(table)
 
 def show_dependency_tree():
-    dists = get_installed_distributions()
-    dist_index = build_dist_index(dists)
-    tree_data = construct_tree(dist_index)
-    root = Tree("Dependency Tree")
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pipdeptree", "--json"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        tree_data = json.loads(result.stdout)
+        pkg_map = {pkg["package"]["key"]: pkg for pkg in tree_data}
 
-    def build_branch(subtree, parent):
-        for dist, children in subtree.items():
-            node = parent.add(f"{dist.project_name} [dim]({dist.version})[/dim]")
-            build_branch(children, node)
+        visited = set()
+        root = Tree("Dependency Tree")
 
-    build_branch(tree_data, root)
-    console.print(root)
+        def add_node(pkg_key, parent):
+            if pkg_key in visited:
+                return
+            visited.add(pkg_key)
+            pkg = pkg_map.get(pkg_key)
+            if not pkg:
+                return
+            name = pkg["package"]["key"]
+            version = pkg["package"]["installed_version"]
+            node = parent.add(f"{name} [dim]({version})[/dim]")
+            for dep in pkg["dependencies"]:
+                add_node(dep["key"], node)
+
+        for pkg_key in pkg_map:
+            add_node(pkg_key, root)
+
+        console.print(root)
+
+    except subprocess.CalledProcessError as e:
+        console.print(f"[red]Failed to run pipdeptree: {e}[/red]")
+        sys.exit(1)
 
 def search_package(name: str):
     packages = run_pip_list()
