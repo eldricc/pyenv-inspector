@@ -66,7 +66,7 @@ def show_package_list(json_output=False):
             table.add_row(pkg["name"], pkg["version"])
         console.print(table)
 
-def show_dependency_tree():
+def show_dependency_tree(json_output=False):
     try:
         result = subprocess.run(
             [sys.executable, "-m", "pipdeptree", "--json"],
@@ -75,8 +75,12 @@ def show_dependency_tree():
             check=True
         )
         tree_data = json.loads(result.stdout)
-        pkg_map = {pkg["package"]["key"]: pkg for pkg in tree_data}
 
+        if json_output:
+            print(json.dumps(tree_data, indent=2))
+            return
+
+        pkg_map = {pkg["package"]["key"]: pkg for pkg in tree_data}
         visited = set()
         root = Tree("Dependency Tree")
 
@@ -144,6 +148,7 @@ def main():
     list_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     tree_parser = subparsers.add_parser("tree", help="Show dependency tree")
+    tree_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     search_parser = subparsers.add_parser("search", help="Search for a package")
     search_parser.add_argument("name", help="Name to search for")
@@ -159,7 +164,7 @@ def main():
     elif args.command == "list":
         show_package_list(json_output=args.json)
     elif args.command == "tree":
-        show_dependency_tree()
+        show_dependency_tree(json_output=args.json)
     elif args.command == "search":
         search_package(args.name)
     elif args.command == "export":
